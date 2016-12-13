@@ -4,9 +4,6 @@ main {
 main aside {
     min-width: 40%;
 } 
-main article {
-    min-width: 320px;
-}
 
 @media screen and (max-width: 720px) {
     header {
@@ -14,6 +11,14 @@ main article {
     }
     header h1 {
         font-size: 5rem;
+    }
+
+    aside {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    aside div {
+        flex-basis: 50%;
     }
    
     main {
@@ -27,5 +32,11 @@ main article {
     }
     main aside {
         order: 2;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    aside div {
+        flex-basis: 100%;
     }
 }

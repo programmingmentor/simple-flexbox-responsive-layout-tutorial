@@ -128,7 +128,7 @@ Also create folder `css` and place empty file `index.css` into it, add link to `
 <link href="css/index.css" rel="stylesheet">
 ```
 
-In the file `css/index.css` add styles:
+In the file `css/index.css` add styles. Please note that we used `display: flex;` property to center text in header.
 
 ```css
 * {
@@ -187,7 +187,13 @@ In the folder `css` create file `index-layout.css`, add link to it in `head` sec
 <link href="css/index-layout.css" rel="stylesheet">
 ```
 
-Add layout styles to `css/index-layout.css`:
+We will create simple layout with `header` at top, `footer` at bottom and `main` section split to three columns - `nav`, `article` and `aside`.
+We will create layout using `flexbox`.
+At first, we tell `main` section to use `flexbox` with `display: flex` property, then we should split width between our columns. 
+For `nav` section we will use default width, it will take as much space as needed to show content.
+For `aside` we will tell to use at least 40% of the width of parent container and rest of the space will be provided for article. 
+
+Here how our layout styles will look like in `css/index-layout.css`:
 
 ```css
 main {
@@ -196,10 +202,11 @@ main {
 main aside {
     min-width: 40%;
 } 
-main article {
-    min-width: 320px;
-}
 ```
+
+To let our website adapt to small screens we will add `media query` directive and set a limit when layout should be changed.
+
+
 
 For small screens we will use `media query` and add following styles:
 
@@ -212,6 +219,14 @@ For small screens we will use `media query` and add following styles:
         font-size: 5rem;
     }
 
+    aside {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    aside div {
+        flex-basis: 50%;
+    }
+   
     main {
         flex-wrap: wrap;
     }
@@ -223,6 +238,16 @@ For small screens we will use `media query` and add following styles:
     }
     main aside {
         order: 2;
+    }
+}
+```
+
+For extra small screens we add modifications to let images take full width of the screen:
+
+```css
+@media screen and (max-width: 450px) {
+    aside div {
+        flex-basis: 100%;
     }
 }
 ```
